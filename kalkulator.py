@@ -5,10 +5,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filena
 
 # Definiuje słownik działań z nazwami, funkcjami i komunikatami
 dzialania = {
-    '1': ('Dodawanie', lambda x, y: x + y, "Dodaję"), 
-    '2': ('Odejmowanie', lambda x, y: x - y, "Odejmuję"),
-    '3': ('Mnożenie', lambda x, y: x * y, "Mnożę"),
-    '4': ('Dzielenie', lambda x, y: x / y, "Dzielę")
+    '1': ('Dodawanie', lambda x, y: x + y, "Suma"),
+    '2': ('Odejmowanie', lambda x, y: x - y, "Różnica"), 
+    '3': ('Mnożenie', lambda x, y: x * y, "Iloczyn"),
+    '4': ('Dzielenie', lambda x, y: x / y, "Iloraz"),
 }
 
 print(f"""Jakie działanie chcesz wykonać:
@@ -21,14 +21,15 @@ while True:
     print("Podaj numer działania (1/2/3/4): ", end="") 
     typ = input() # Pobiera od użytkownika wybór działania
     if typ in dzialania:
+        print("Wybrano:", dzialania[typ][0]) # Drukuje nazwę wybranego działania
         break
     else:
         print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
     logging.error("Podano nieprawidłowe działanie: %s" % typ) # Loguje błąd nieprawidłowego działania
        
-print("Podaj liczbę 1.", end=" ") 
+print("Podaj pierwszą liczbę:", end=" ") 
 a = float(input()) # Pobiera pierwszy składnik od użytkownika
-print("Podaj liczbę 2.", end=" ")
+print("Podaj drugą liczbę:", end=" ")
 b = float(input()) # Pobiera drugi składnik od użytkownika
 
 nazwa, operacja, log_msg = dzialania[typ] # Pobiera nazwę, funkcję i komunikat logowania dla wybranego działania
