@@ -5,17 +5,18 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filena
 
 # Definiuje słownik działań z nazwami, funkcjami i komunikatami
 dzialania = {
-    '1': ('Dodawanie', lambda x, y: x + y, "Suma"),
-    '2': ('Odejmowanie', lambda x, y: x - y, "Różnica"), 
-    '3': ('Mnożenie', lambda x, y: x * y, "Iloczyn"),
-    '4': ('Dzielenie', lambda x, y: x / y, "Iloraz"),
+    '1': ('Dodawanie (+)', lambda x, y: x + y, "Suma"),
+    '2': ('Odejmowanie (-)', lambda x, y: x - y, "Różnica"), 
+    '3': ('Mnożenie (*)', lambda x, y: x * y, "Iloczyn"),
+    '4': ('Dzielenie (/)', lambda x, y: x / y, "Iloraz"),
 }
 
 print(f"""Jakie działanie chcesz wykonać:
-1 - dodawanie
-2 - odejmowanie
-3 - mnożenie
-4 - dzielenie""")
+1 - Dodawanie (+)
+2 - Odejmowanie (-)
+3 - Mnożenie (*)
+4 - Dzielenie (/)
+""")
 
 while True:
     print("Podaj numer działania (1/2/3/4): ", end="") 
