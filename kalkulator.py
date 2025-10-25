@@ -67,10 +67,10 @@ def kalkulator_help():
     Wszystkie ważne zdarzenia są logowane do pliku logfile.log.
     Nie radzi sobie z liczbami ujemnymi podawanymi do obliczeń. do poprawy.
     
-    Dodać pkt 2 dla chętnych dla 1 i 2 dodać możliwość podawania wielu liczb do obliczeń.
+    Dodać pkt 2 dla chętnych dla 1 i 2 dodać możliwość podawania wielu liczb do obliczeń. Na innej gałęzi.
     """
-if __name__ == "__main__":
-    komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ")
-    if komenda.lower() == 'help':
-        help(kalkulator_help)
+if __name__ == "__main__": 
+    komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ") # Pobiera od użytkownika komendę
+    if komenda.lower() == 'help': # Jeśli użytkownik wpisze 'help', wywołaj funkcję help
+        help(kalkulator_help) 
 # Koniec helpa
