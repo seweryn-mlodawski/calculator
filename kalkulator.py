@@ -50,3 +50,4 @@ print(f"{log_msg} {a:.2f} i {b:.2f}") # Drukuje komunikat o wykonywanym działan
 wynik = operacja(a, b) # Wykonuje wybrane działanie
 print(f"Wynik to {wynik:.2f}") # Drukuje wynik działania
 logging.info("Wynik to %.2f" % wynik) # Loguje wynik działania
+# Koniec programu
