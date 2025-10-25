@@ -19,7 +19,7 @@ print(f"""Jakie działanie chcesz wykonać:
 """)
 
 while True:
-    print("Podaj numer działania (1/2/3/4): ", end="") 
+    print("Podaj numer działania (1/2/3/4): ", end="") #end ="" zapobiega przejściu do nowej linii po wydrukowaniu
     typ = input() # Pobiera od użytkownika wybór działania
     if typ in dzialania:
         print("Wybrano:", dzialania[typ][0]) # Drukuje nazwę wybranego działania
@@ -31,7 +31,7 @@ while True:
 while True:
     a = input("Podaj pierwszą liczbę: ") # Pobiera od użytkownika pierwszą liczbę
     b = input("Podaj drugą liczbę: ") # Pobiera od użytkownika drugą liczbę
-    if a.isdigit() and b.isdigit(): # Sprawdza, czy obie wartości są liczbami
+    if a.isdigit() and b.isdigit(): # Sprawdza, czy obie wartości są liczbami - pierwszy punkt "Dla chętnych"
         a = float(a) # Konwertuje pierwszą liczbę na float
         b = float(b) # Konwertuje drugą liczbę na float   
         if typ == '4' and b == 0:
@@ -40,14 +40,21 @@ while True:
             continue
         break    
     else:
-        print("Nieprawidłowe dane, możesz wpisać tylko liczby! Spróbuj ponownie.")
+        print("Nieprawidłowe dane, możesz wpisać tylko liczby całkowite! Spróbuj ponownie.")
         logging.error("Wpisano nieprawidłowe znaki: %s, %s" % (a, b)) # Loguje błąd nieprawidłowych liczb   
 
 nazwa, operacja, log_msg = dzialania[typ] # Pobiera nazwę, funkcję i komunikat logowania dla wybranego działania
 logging.info(f'{log_msg} {a:.2f} i {b:.2f}') # Loguje informację o wykonywanym działaniu
-print(f"{log_msg} {a:.2f} i {b:.2f}") # Drukuje komunikat o wykonywanym działaniu
+print(f"{log_msg} {a:.0f} i {b:.0f}") # Drukuje komunikat o wykonywanym działaniu
 
 wynik = operacja(a, b) # Wykonuje wybrane działanie
-print(f"Wynik to {wynik:.2f}") # Drukuje wynik działania
-logging.info("Wynik to %.2f" % wynik) # Loguje wynik działania
+if wynik.is_integer():   # Sprawdza, czy wynik jest liczbą całkowitą
+    #wynik jest liczba całkowitą
+    print(f"Wynik to {int(wynik)}") # Drukuje wynik jako liczbę całkowitą
+    logging.info("Wynik to %d" % int(wynik)) # Loguje wynik jako liczbę całkowitą
+else:
+    #wynik jest liczbą ułamkową
+    print(f"Wynik to {wynik:.2f}") # Drukuje wynik jako liczbę zmiennoprzecinkową z dwoma miejscami po przecinku
+    logging.info("Wynik to %.2f" % wynik) # Loguje wynik jako liczbę z dwoma miejscami po przecinku
+
 # Koniec programu
