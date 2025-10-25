@@ -58,3 +58,18 @@ else:
     logging.info("Wynik to %.2f" % wynik) # Loguje wynik jako liczbę z dwoma miejscami po przecinku
 
 # Koniec programu
+def kalkulator_help():
+    """
+    Kalkulator wykonujący podstawowe działania matematyczne: dodawanie, odejmowanie, mnożenie i dzielenie.
+    Program prosi użytkownika o wybór działania oraz dwie liczby, a następnie wykonuje wybrane działanie i wyświetla wynik.
+    Program obsługuje błędy, takie jak nieprawidłowy wybór działania, nieprawidłowe dane wejściowe oraz dzielenie przez zero.
+    Wszystkie ważne zdarzenia są logowane do pliku logfile.log.
+    Nie radzi sobie z liczbami ujemnymi podawanymi do obliczeń. do poprawy.
+    
+    Dodać pkt 2 dla chętnych dla 1 i 2 dodać możliwość podawania wielu liczb do obliczeń.
+    """
+if __name__ == "__main__":
+    komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ")
+    if komenda.lower() == 'help':
+        help(kalkulator_help)
+    # ... tutaj właściwy kod kalkulatora
