@@ -58,6 +58,7 @@ else:
     logging.info("Wynik to %.2f" % wynik) # Loguje wynik jako liczbę z dwoma miejscami po przecinku
 
 # Koniec programu
+
 def kalkulator_help():
     """
     Kalkulator wykonujący podstawowe działania matematyczne: dodawanie, odejmowanie, mnożenie i dzielenie.
@@ -72,4 +73,4 @@ if __name__ == "__main__":
     komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ")
     if komenda.lower() == 'help':
         help(kalkulator_help)
-    # ... tutaj właściwy kod kalkulatora
+# Koniec helpa
