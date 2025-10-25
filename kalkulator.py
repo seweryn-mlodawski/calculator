@@ -23,6 +23,11 @@ while True:
     typ = input() # Pobiera od użytkownika wybór działania
     if typ in dzialania:
         print("Wybrano:", dzialania[typ][0]) # Drukuje nazwę wybranego działania
+        if typ in ('1','3'):
+            print("W tej operacji możesz podać więcej niż dwie liczby, oddzielając je spacją.") # Informuje użytkownika o możliwości podania wielu liczb dla dodawania i mnożenia
+            # Tutaj można dodać obsługę wielu liczb, jeśli jest taka potrzeba
+            
+
         break
     else:
         print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
