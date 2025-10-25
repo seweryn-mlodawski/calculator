@@ -28,10 +28,20 @@ while True:
         print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
     logging.error("Podano nieprawidłowe działanie: %s" % typ) # Loguje błąd nieprawidłowego działania
        
-print("Podaj pierwszą liczbę:", end=" ") 
-a = float(input()) # Pobiera pierwszy składnik od użytkownika
-print("Podaj drugą liczbę:", end=" ")
-b = float(input()) # Pobiera drugi składnik od użytkownika
+while True:
+    a = input("Podaj pierwszą liczbę: ") # Pobiera od użytkownika pierwszą liczbę
+    b = input("Podaj drugą liczbę: ") # Pobiera od użytkownika drugą liczbę
+    if a.isdigit() and b.isdigit(): # Sprawdza, czy obie wartości są liczbami
+        a = float(a) # Konwertuje pierwszą liczbę na float
+        b = float(b) # Konwertuje drugą liczbę na float   
+        if typ == '4' and b == 0:
+            print("Nie można dzielić przez zero, podaj drugą liczbę różną od 0.")
+            logging.error("Próba dzielenia przez zero.") # Loguje błąd próby dzielenia przez zero
+            continue
+        break    
+    else:
+        print("Nieprawidłowe dane, możesz wpisać tylko liczby! Spróbuj ponownie.")
+        logging.error("Wpisano nieprawidłowe znaki: %s, %s" % (a, b)) # Loguje błąd nieprawidłowych liczb   
 
 nazwa, operacja, log_msg = dzialania[typ] # Pobiera nazwę, funkcję i komunikat logowania dla wybranego działania
 logging.info(f'{log_msg} {a:.2f} i {b:.2f}') # Loguje informację o wykonywanym działaniu
