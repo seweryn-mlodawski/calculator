@@ -1,4 +1,4 @@
-import sys                                  # Importuje moduł sys do obsługi argumentów wiersza poleceń
+#import sys                                  # Importuje moduł sys do obsługi argumentów wiersza poleceń
 import logging                              # Importuje moduł logging do obsługi logowania komunikatów
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename="logfile.log")    # Ustawia poziom logowania na INFO i logowanie do pliku logfile.log
 #logging.basicConfig(level=logging.DEBUG)    # Ustawia poziom logowania na DEBUG
@@ -53,7 +53,9 @@ while True:
     else:
         print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
     logging.error("Podano nieprawidłowe działanie: %s" % typ) # Loguje błąd nieprawidłowego działania
-       
+
+#czaby tu funkcje wstawić chyba? :)
+
 while True:
     a = input("Podaj pierwszą liczbę: ") # Pobiera od użytkownika pierwszą liczbę
     b = input("Podaj drugą liczbę: ") # Pobiera od użytkownika drugą liczbę
@@ -97,7 +99,7 @@ def kalkulator_help():
     ----------------------------
     Notatki dla mnie z przyszłości: Nie mogę przeskoczyć do miejsc w kodzie na zasadzie "goto", ale mogę umieścić kod w funkcji i wywołać ją warunkowo.
     """
-    
+
 if __name__ == "__main__":
     komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ")
     if komenda.lower() == 'help':
