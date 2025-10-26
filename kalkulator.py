@@ -26,6 +26,27 @@ while True:
         if typ in ('1','3'):
             print("W tej operacji możesz podać więcej niż dwie liczby, oddzielając je spacją.") # Informuje użytkownika o możliwości podania wielu liczb dla dodawania i mnożenia
             # Tutaj można dodać obsługę wielu liczb, jeśli jest taka potrzeba
+
+            dodawanie = input("Podaj liczby: ").split() # Pobiera od użytkownika liczby i dzieli je na listę
+            if all(num.replace('.','',1).isdigit() for num in dodawanie): # Sprawdza, czy wszystkie wartości są liczbami (obsługa liczb zmiennoprzecinkowych)
+                liczby = [float(num) for num in dodawanie] # Konwertuje wszystkie liczby na float
+                if typ == '1': # Jeśli user wybrał 1 - Dodawanie:
+                    wynik = sum(liczby) # Oblicza sumę wpisanych liczb
+                    log_msg = "Suma"
+                else: 
+                    typ == '3' # Jeśli user wybrał 3 - Mnożenie:
+                    wynik = 1 # Inicjalizuje wynik mnożenia
+                    for num in liczby:
+                        wynik *= num # Oblicza iloczyn wpisanych liczb
+                    log_msg = "Iloczyn"
+                logging.info(f'{log_msg} liczb: {", ".join(dodawanie)}') # Loguje informację o wykonywanym działaniu
+                if wynik.is_integer():
+                    print(f"Wynik to {int(wynik)}") # Drukuje wynik jako liczbę całkowitą
+                    logging.info("Wynik to %d" % int(wynik)) # Loguje wynik jako liczbę całkowitą
+                else:
+                    print(f"Wynik to {wynik:.2f}") # Drukuje wynik jako liczbę zmiennoprzecinkową z dwoma miejscami po przecinku
+                    logging.info("Wynik to %.2f" % wynik) # Loguje wynik jako liczbę z dwoma miejscami po przecinku
+                sys.exit() # Kończy program po wykonaniu działania dla wielu liczb
             
 
         break
@@ -73,7 +94,10 @@ def kalkulator_help():
     Nie radzi sobie z liczbami ujemnymi podawanymi do obliczeń. do poprawy.
     
     Dodać pkt 2 dla chętnych dla 1 i 2 dodać możliwość podawania wielu liczb do obliczeń.
+    ----------------------------
+    Notatki dla mnie z przyszłości: Nie mogę przeskoczyć do miejsc w kodzie na zasadzie "goto", ale mogę umieścić kod w funkcji i wywołać ją warunkowo.
     """
+    
 if __name__ == "__main__":
     komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ")
     if komenda.lower() == 'help':
