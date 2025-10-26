@@ -11,8 +11,11 @@ def kalkulator_help():
     Wszystkie ważne zdarzenia są logowane do pliku logfile.log.
     + Sprawdza czy podane dane są liczbami.
     + Pozwala na podanie wielu liczb dla dodawania i mnożenia.
-    - Nie radzi sobie z liczbami ujemnymi podawanymi do obliczeń. (do poprawy).
-    
+    ----------------------------
+    Możliwe upgrade'y:
+    - Dodanie wyświetlania w wyniku działania pełnego równania (np. 2 + 2 = 4). lub podobne
+    - Dodanie mozliwości wykonywania kolejnych działań na wyniku poprzedniego działania bez konieczności ponownego uruchamiania programu.
+    - Co wiąże się z opcją wyboru czy użytkownik chce zakończyć działanie programu czy kontynuować z wynikiem poprzedniego działania.
     ----------------------------
     
     """
@@ -44,7 +47,7 @@ while True:
         if typ in ('1','3'):
             print("W tej operacji możesz podać więcej niż dwie liczby, oddzielając je SPACJĄ.") # Informuje użytkownika o możliwości podania wielu liczb dla dodawania i mnożenia
             
-            dodawanie = input("Podaj liczby: ").split() # Pobiera od użytkownika liczby i dzieli je na listę
+            more_then_one = input("Podaj liczby: ").split() # Pobiera od użytkownika liczby i dzieli je na listę
 
             def czy_liczba(s):
                 try:
@@ -52,8 +55,8 @@ while True:
                     return True
                 except ValueError:
                     return False
-            if all(czy_liczba(num) for num in dodawanie): # Sprawdza, czy wszystkie wartości są liczbami
-                liczby = [float(num) for num in dodawanie] # Konwertuje wszystkie liczby na float
+            if all(czy_liczba(num) for num in more_then_one): # Sprawdza, czy wszystkie wartości są liczbami
+                liczby = [float(num) for num in more_then_one] # Konwertuje wszystkie liczby na float
                 if typ == '1': # Jeśli user wybrał 1 - Dodawanie:
                     wynik = sum(liczby) # Oblicza sumę wpisanych liczb
                     log_msg = "Suma"
@@ -70,7 +73,7 @@ while True:
                     for num in liczby:
                         wynik *= num # Oblicza iloczyn wpisanych liczb
                     log_msg = "Iloczyn"
-                logging.info(f'{log_msg} liczb: {", ".join(dodawanie)}') # Loguje informację o wykonywanym działaniu
+                logging.info(f'{log_msg} liczb: {", ".join(more_then_one)}') # Loguje informację o wykonywanym działaniu
                 if wynik.is_integer():
                     print(f"Wynik dzialania: {int(wynik)}") # Drukuje wynik jako liczbę całkowitą
                     #logging.info("Wynik to %d" % int(wynik)) # Loguje wynik jako liczbę całkowitą
