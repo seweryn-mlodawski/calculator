@@ -1,5 +1,9 @@
 # to jest plik 2_kalkulator.py - alternatywna wersja kalkulatora 
-# zmieniona przez AI na podstawie mojego oryginalnego pliku kalkulator.py
+# zmiany zasugerowane przez AI na podstawie mojego oryginalnego pliku kalkulator.py
+# Program obsługuje błędy, takie jak nieprawidłowy wybór działania, nieprawidłowe dane wejściowe oraz dzielenie przez zero.
+# Wszystkie ważne zdarzenia są logowane do pliku logfile.log.
+# Nie dodawałem tutaj funkcji help, ponieważ nie jest to kluczowe dla działania kalkulatora a jest to moja rozszerzona wersja oryginalnego pliku kalkulator.py
+#gdzie chciałem zobaczyć jak to się konstruuje.
 
 import sys
 import logging

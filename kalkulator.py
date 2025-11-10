@@ -1,8 +1,9 @@
 import sys                                  # Importuje moduł sys do obsługi argumentów wiersza poleceń
 import logging                              # Importuje moduł logging do obsługi logowania komunikatów
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename="logfile.log")    # Ustawia poziom logowania na INFO i logowanie do pliku logfile.log
-#logging.basicConfig(level=logging.DEBUG)    # Ustawia poziom logowania na DEBUG
 
+# ----------- Funkcje pomocnicze -----------
+# Funkcja wyświetlająca instrukcję obsługi kalkulatora
 def kalkulator_help():
     """
     Kalkulator wykonujący podstawowe działania matematyczne: dodawanie, odejmowanie, mnożenie i dzielenie.
@@ -12,17 +13,62 @@ def kalkulator_help():
     + Sprawdza czy podane dane są liczbami.
     + Pozwala na podanie wielu liczb dla dodawania i mnożenia.
     ----------------------------
-    Możliwe upgrade'y:
+    Pomysły na możliwe upgrade'y:
     - Dodanie wyświetlania w wyniku działania pełnego równania (np. 2 + 2 = 4). lub podobne
     - Dodanie mozliwości wykonywania kolejnych działań na wyniku poprzedniego działania bez konieczności ponownego uruchamiania programu.
     - Co wiąże się z opcją wyboru czy użytkownik chce zakończyć działanie programu czy kontynuować z wynikiem poprzedniego działania.
     ----------------------------
     
     """
+
+# Funkcja sprawdzająca, czy dany ciąg znaków jest liczbą
+def czy_liczba(s):
+    try: # Próbuje przekonwertować ciąg znaków na liczbę zmiennoprzecinkową
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+# Funkcja pobierająca i walidująca wybór działania od użytkownika
+# Wyświetla menu działań i prosi użytkownika o wybór
+def pobierz_typ_dzialania(dzialania):
+    print("""Jakie działanie chcesz wykonać:
+1 - Dodawanie (+)
+2 - Odejmowanie (-)
+3 - Mnożenie (*)
+4 - Dzielenie (/)
+""")
+    
+
+
+    typ = input("Podaj numer działania (1/2/3/4): ") # Pobiera od użytkownika wybór działania
+    if typ in dzialania:
+        print("Wybrano:", dzialania[typ][0])
+    else:
+        logging.error("Podano nieprawidłowy numer działania: %s" % typ)
+        print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
+        sys.exit()
+    return typ, dzialania
+
+# Funkcja obsługująca pobieranie wielu liczb dla dodawania i mnożenia
+# Jeśli użytkownik wybrał dodawanie lub mnożenie, pozwala na podanie wielu liczb oddzielonych spacją
+def obsluga_list_liczb(typ):
+    print("W tej operacji możesz podać więcej niż dwie liczby, oddzielając je SPACJĄ.")
+    more_then_one = input("Podaj liczby: ").split()
+    if all(czy_liczba(num) for num in more_then_one):
+        liczby = [float(num) for num in more_then_one]
+        return liczby, more_then_one
+    else:
+        print("Nieprawidłowe dane, możesz wpisać tylko liczby! Spróbuj ponownie.")
+        logging.error("Wpisano nieprawidłowe znaki: %s" % ", ".join(more_then_one))
+        sys.exit()
+
 if __name__ == "__main__":  # Sprawdza, czy skrypt jest uruchamiany bezpośrednio
     komenda = input("\nWpisz 'help' aby zobaczyć instrukcję, lub ENTER aby kontynuować: ") # Pobiera od użytkownika komendę
     if komenda.lower() == 'help': # Jeśli użytkownik wpisze 'help', wywołaj funkcję kalkulator_help
         help(kalkulator_help) 
+
+
 
 # Definiuje słownik działań z nazwami, funkcjami i komunikatami
 dzialania = {
@@ -32,12 +78,6 @@ dzialania = {
     '4': ('Dzielenie (/)', lambda x, y: x / y, "Iloraz"),
 }
 
-print(f"""Jakie działanie chcesz wykonać:
-1 - Dodawanie (+)
-2 - Odejmowanie (-)
-3 - Mnożenie (*)
-4 - Dzielenie (/)
-""")
 
 while True:
     print("Podaj numer działania (1/2/3/4): ", end="") #end ="" zapobiega przejściu do nowej linii po wydrukowaniu
@@ -94,12 +134,12 @@ while True:
         print("Nieprawidłowy wybór, podaj liczbę od 1 do 4.")
     logging.error("Podano nieprawidłowy numer działania: %s" % typ) # Loguje błąd nieprawidłowego działania
 
-def czy_liczba(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
+
+
+
+
+
+
 
 while True:
     a = input("Podaj pierwszą liczbę: ")
